@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8f5ef">
+  <meta name="description" content="Hestia — a gentle place for shared plans, important dates, and everyday moments.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="application-name" content="Hestia">
+  <title>Hestia — Make room for moments</title>
+  <link rel="icon" href="./icons/hestia.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" class="icon-library" aria-hidden="true" focusable="false">
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-8h6v8"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h12M9 12h12M9 18h12M4.5 6h.01M4.5 12h.01M4.5 18h.01" stroke-linecap="round" stroke-width="3"/></symbol>
+    <symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M17 5a3 3 0 0 1 0 6M18 15a5 5 0 0 1 3 5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-pencil" viewBox="0 0 24 24"><path d="m15 5 4 4M4 20l5-1 11-11a3 3 0 0 0-4-4L5 15z"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M7 7l1 14h8l1-14M10 11v6M14 11v6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 15A8.5 8.5 0 0 1 9 4 8.5 8.5 0 1 0 20 15Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 1 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+    <symbol id="i-coffee" viewBox="0 0 24 24"><path d="M4 7h14v7a7 7 0 0 1-14 0zM18 9h2a3 3 0 0 1 0 6h-2M3 21h17"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><path d="M4 8h16l-1 13H5zM9 9V6a3 3 0 0 1 6 0v3"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 2.7 7.3L22 12l-7.3 2.7L12 22l-2.7-7.3L2 12l7.3-2.7z"/></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M5 14v6h14v-6"/></symbol>
+  </svg>
+
+  <div class="app-shell" id="appShell">
+    <aside class="side-panel" aria-label="Desktop navigation">
+      <a class="brand brand-side" href="./" aria-label="Hestia Home"><span class="brand-symbol" aria-hidden="true"><span class="flame"></span></span><span>hestia<span class="brand-dot">.</span></span></a>
+      <div class="side-intro"><span class="eyebrow">THE SHARED PLANNER</span><p>A little home<br>for every plan.</p></div>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <button type="button" class="nav-btn active" data-view="today"><svg class="ico"><use href="#i-home"/></svg><span>Today</span></button>
+        <button type="button" class="nav-btn" data-view="calendar"><svg class="ico"><use href="#i-calendar"/></svg><span>Calendar</span></button>
+        <button type="button" class="nav-btn" data-view="plans"><svg class="ico"><use href="#i-list"/></svg><span>All plans</span></button>
+        <button type="button" class="nav-btn" data-view="us"><svg class="ico"><use href="#i-people"/></svg><span>Our space</span></button>
+      </nav>
+      <button type="button" class="side-create" data-action="add"><svg class="ico"><use href="#i-plus"/></svg> New plan</button>
+      <div class="side-end"><span class="little-leaf">✳</span><p>Made for life's<br>lovely little moments.</p><a href="https://mistervaliant.github.io/chronos/" target="_blank" rel="noopener noreferrer">Open Chronos <span aria-hidden="true">↗</span></a></div>
+    </aside>
+    <div class="main-column">
+      <header class="topbar">
+        <a class="brand brand-mobile" href="./" aria-label="Hestia Home"><span class="brand-symbol" aria-hidden="true"><span class="flame"></span></span><span>hestia<span class="brand-dot">.</span></span></a>
+        <div class="topbar-right"><span class="local-status"><span class="status-dot"></span> LOCAL PREVIEW</span><button class="member-pill" type="button" data-view="us" aria-label="Open your space"><span class="avatar avatar-one">Y</span><span class="avatar avatar-two">P</span></button></div>
+      </header>
+      <main id="mainContent" tabindex="-1" aria-live="polite"></main>
+      <footer class="desktop-footer">Hestia <span aria-hidden="true">✳</span> Make room for moments.</footer>
+    </div>
+  </div>
+
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <button type="button" class="bottom-item active" data-view="today" aria-label="Today"><svg class="ico"><use href="#i-home"/></svg><span>Today</span></button>
+    <button type="button" class="bottom-item" data-view="calendar" aria-label="Calendar"><svg class="ico"><use href="#i-calendar"/></svg><span>Calendar</span></button>
+    <button type="button" class="bottom-add" data-action="add" aria-label="Add a plan"><svg class="ico"><use href="#i-plus"/></svg></button>
+    <button type="button" class="bottom-item" data-view="plans" aria-label="Plans"><svg class="ico"><use href="#i-list"/></svg><span>Plans</span></button>
+    <button type="button" class="bottom-item" data-view="us" aria-label="Our space"><svg class="ico"><use href="#i-people"/></svg><span>Us</span></button>
+  </nav>
+
+  <dialog class="sheet-dialog" id="eventDialog" aria-labelledby="eventDialogTitle">
+    <form id="eventForm" class="event-form" novalidate>
+      <div class="sheet-handle" aria-hidden="true"></div>
+      <div class="sheet-head"><div><span class="eyebrow">A MOMENT TO REMEMBER</span><h2 id="eventDialogTitle">New plan</h2></div><button type="button" class="icon-button" data-action="close-form" aria-label="Close"><svg class="ico"><use href="#i-close"/></svg></button></div>
+      <div class="form-body">
+        <label class="field"><span>What's the plan?</span><input name="title" id="fTitle" required maxlength="90" placeholder="e.g. Lunch with the family" autocomplete="off"></label>
+        <div class="field"><span>Category</span><div class="category-picker" id="categoryPicker" role="group" aria-label="Event category">
+          <button type="button" class="category-opt chosen" data-cat="outing">✿ <span>Outing</span></button><button type="button" class="category-opt" data-cat="appointment">◷ <span>Appointment</span></button><button type="button" class="category-opt" data-cat="errand">◈ <span>Errand</span></button><button type="button" class="category-opt" data-cat="home">⌂ <span>Home</span></button>
+        </div></div>
+        <div class="form-grid"><label class="field"><span>Date</span><input name="date" id="fDate" type="date" required></label><label class="field"><span>Time</span><input name="time" id="fTime" type="time" required></label></div>
+        <div class="form-grid"><label class="field"><span>Duration</span><select id="fDuration" name="duration"><option value="30">30 minutes</option><option value="60" selected>1 hour</option><option value="90">1 hr 30 min</option><option value="120">2 hours</option><option value="180">3 hours</option><option value="240">4 hours</option><option value="0">All day / no duration</option></select></label><label class="field"><span>Leave home at <small>(optional)</small></span><input type="time" name="departure" id="fDeparture"></label></div>
+        <label class="field"><span>Where?</span><input name="location" id="fLocation" maxlength="120" placeholder="Add a place (optional)"></label>
+        <label class="field"><span>A little note <small>(optional)</small></span><textarea name="notes" id="fNotes" rows="2" maxlength="600" placeholder="Anything you don't want to forget..."></textarea></label>
+        <fieldset class="reminders"><legend><svg class="ico"><use href="#i-bell"/></svg> Reminder preferences</legend><div class="reminder-choices"><label><input type="checkbox" name="reminder" value="1440"><span>1 day before</span></label><label><input type="checkbox" name="reminder" value="180"><span>3 hours</span></label><label><input type="checkbox" name="reminder" value="30" checked><span>30 minutes</span></label></div><p>Saved for future syncing. <strong>Background push alerts are not active in this preview.</strong></p></fieldset>
+      </div>
+      <div class="form-actions"><button type="button" class="button button-ghost" data-action="close-form">Cancel</button><button type="submit" class="button button-primary" id="saveEvent">Save plan <svg class="ico"><use href="#i-arrow"/></svg></button></div>
+    </form>
+  </dialog>
+
+  <dialog class="sheet-dialog detail-dialog" id="detailDialog" aria-labelledby="detailTitle"><div id="detailBody"></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="./app.js" defer></script>
+</body>
+</html>
