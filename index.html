@@ -57,12 +57,12 @@
         <button type="button" class="nav-btn" data-view="us"><svg class="ico"><use href="#i-people"/></svg><span>Our space</span></button>
       </nav>
       <button type="button" class="side-create" data-action="add"><svg class="ico"><use href="#i-plus"/></svg> New plan</button>
-      <div class="side-end"><span class="little-leaf">✳</span><p>Made for life's<br>lovely little moments.</p><a href="https://mistervaliant.github.io/chronos/" target="_blank" rel="noopener noreferrer">Open Chronos <span aria-hidden="true">↗</span></a></div>
+      <div class="side-end"><span class="little-leaf">✳</span><p>Made for life's<br>lovely little moments.</p></div>
     </aside>
     <div class="main-column">
       <header class="topbar">
         <a class="brand brand-mobile" href="./" aria-label="Hestia Home"><span class="brand-symbol" aria-hidden="true"><span class="flame"></span></span><span>hestia<span class="brand-dot">.</span></span></a>
-        <div class="topbar-right"><span class="local-status"><span class="status-dot"></span> LOCAL PREVIEW</span><button class="member-pill" type="button" data-view="us" aria-label="Open your space"><span class="avatar avatar-one">Y</span><span class="avatar avatar-two">P</span></button></div>
+        <div class="topbar-right"><span class="local-status"><span class="status-dot"></span> CONNECTING</span><button class="member-pill" type="button" data-view="us" aria-label="Open your space"><span class="avatar avatar-one">Y</span><span class="avatar avatar-two">P</span></button></div>
       </header>
       <main id="mainContent" tabindex="-1" aria-live="polite"></main>
       <footer class="desktop-footer">Hestia <span aria-hidden="true">✳</span> Make room for moments.</footer>
@@ -90,7 +90,7 @@
         <div class="form-grid"><label class="field"><span>Duration</span><select id="fDuration" name="duration"><option value="30">30 minutes</option><option value="60" selected>1 hour</option><option value="90">1 hr 30 min</option><option value="120">2 hours</option><option value="180">3 hours</option><option value="240">4 hours</option><option value="0">All day / no duration</option></select></label><label class="field"><span>Leave home at <small>(optional)</small></span><input type="time" name="departure" id="fDeparture"></label></div>
         <label class="field"><span>Where?</span><input name="location" id="fLocation" maxlength="120" placeholder="Add a place (optional)"></label>
         <label class="field"><span>A little note <small>(optional)</small></span><textarea name="notes" id="fNotes" rows="2" maxlength="600" placeholder="Anything you don't want to forget..."></textarea></label>
-        <fieldset class="reminders"><legend><svg class="ico"><use href="#i-bell"/></svg> Reminder preferences</legend><div class="reminder-choices"><label><input type="checkbox" name="reminder" value="1440"><span>1 day before</span></label><label><input type="checkbox" name="reminder" value="180"><span>3 hours</span></label><label><input type="checkbox" name="reminder" value="30" checked><span>30 minutes</span></label></div><p>Saved for future syncing. <strong>Background push alerts are not active in this preview.</strong></p></fieldset>
+        <fieldset class="reminders"><legend><svg class="ico"><use href="#i-bell"/></svg> Reminder preferences</legend><div class="reminder-choices"><label><input type="checkbox" name="reminder" value="1440"><span>1 day before</span></label><label><input type="checkbox" name="reminder" value="180"><span>3 hours</span></label><label><input type="checkbox" name="reminder" value="30" checked><span>30 minutes</span></label></div><p>These preferences sync between phones. <strong>Background Android alerts are not active in this frontend-only version.</strong></p></fieldset>
       </div>
       <div class="form-actions"><button type="button" class="button button-ghost" data-action="close-form">Cancel</button><button type="submit" class="button button-primary" id="saveEvent">Save plan <svg class="ico"><use href="#i-arrow"/></svg></button></div>
     </form>
@@ -98,6 +98,12 @@
 
   <dialog class="sheet-dialog detail-dialog" id="detailDialog" aria-labelledby="detailTitle"><div id="detailBody"></div></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <!-- Firebase compat SDK (same implementation style as Chronos; separate Firebase project). -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js" defer></script>
+  <script src="./firebase-settings.js" defer></script>
+  <script src="./backend.js" defer></script>
   <script src="./app.js" defer></script>
 </body>
 </html>

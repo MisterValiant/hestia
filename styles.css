@@ -44,3 +44,13 @@ body.night .together-card .face-add {
 }
 body.night .together-card .big-face:first-child { color:#263e2d; }
 body.night .together-card .big-face:nth-child(2) { color:#422b24; }
+
+/* Shared-account and invitation controls. Minimum 44px targets on mobile. */
+.account-summary{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:16px 18px}
+.account-summary strong{font-size:12px;color:var(--ink)}.account-summary span{font-size:11px;color:var(--muted);overflow-wrap:anywhere;flex:1;min-width:140px}
+.account-summary .tiny-button{margin-left:auto}.setup-form{display:grid;gap:12px;padding:16px 0}.setup-form .field{color:var(--ink)}.setup-form .field input{min-height:48px}.setup-form .button{justify-self:start}
+.member-list{margin-top:12px}.member-row{display:flex;align-items:center;gap:12px;padding:14px 16px}.member-row+.member-row{border-top:1px solid var(--border)}.member-row strong{display:block;font-size:12px}.member-row small{display:block;margin-top:4px;font-size:11px;color:var(--muted);overflow-wrap:anywhere}
+.small-avatar{width:38px;height:38px;border-radius:50%;background:var(--sage);display:grid;place-items:center;color:var(--forest);font-weight:800;flex:none}
+.invite-card{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px;border:1px solid var(--border);border-radius:15px;background:var(--surface);margin-top:12px;flex-wrap:wrap}.invite-card strong{font-size:13px}.invite-card p{font-size:11px;color:var(--muted);margin:4px 0}.invite-card .button{min-height:44px}
+.sync-error{color:#b94e36!important;overflow-wrap:anywhere}.setting-row:disabled{opacity:.75}.setting-row:disabled .mini-tag{white-space:normal}
+body.night .setup-form .field{color:var(--ink)}body.night .account-summary strong{color:var(--ink)}
