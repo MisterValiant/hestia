@@ -57,16 +57,38 @@
     if(s.spaceId&&oldSpace!==s.spaceId){selectedDate=todayISO;monthCursor=startMonth(new Date());}
     updateCloudStatus();render();
   }
+  function initialsForPair(){
+    return ['S','T'];
+  }
+  function updateAvatarGroup(root){
+    if(!root)return;
+    const defaults=initialsForPair();
+    const first=root.querySelector('.avatar-one, .big-face:first-child');
+    const second=root.querySelector('.avatar-two, .big-face:nth-child(2)');
+    const user=backendState.user;
+    const photo=user?.photoURL||'';
+    const initial=((user?.displayName||user?.email||defaults[0]).trim().charAt(0)||defaults[0]).toUpperCase();
+    if(first){
+      if(photo){
+        first.innerHTML=`<img src="${escapeHTML(photo)}" alt="Account photo" class="avatar-photo">`;
+        first.classList.add('avatar-has-photo');
+      }else{
+        first.textContent=initial;
+        first.classList.remove('avatar-has-photo');
+      }
+    }
+    if(second){
+      second.textContent=defaults[1];
+    }
+  }
   function updateCloudStatus(){
     const node=document.querySelector('.local-status');
     if(!node)return;
     const label=backendState.mode==='unavailable'?'OFFLINE':backendState.mode==='error'?'SYNC ERROR':backendState.user?(backendState.spaceId?(backendState.mode==='syncing'?'SYNCING':'SYNCED'):'SIGNED IN'):'LOCAL';
     node.innerHTML=`<span class="status-dot"></span> ${label}`;
     node.title=backendState.error||'Hestia connection status';
-    const pill=document.querySelector('.member-pill');if(pill){
-      const names=backendState.members.length?backendState.members.map(m=>m.displayName||m.email||'Member'):['You','Partner'];
-      pill.querySelectorAll('.avatar').forEach((a,i)=>{a.textContent=(names[i]||'♡').trim().charAt(0).toUpperCase();});
-    }
+    updateAvatarGroup(document.querySelector('.member-pill'));
+    updateAvatarGroup(document.querySelector('.together-faces'));
   }
   async function doCloud(action,success){try{await action();if(success)showToast(success);}catch(err){console.error(err);showToast(err?.message||'Action failed; try again.');}}
 
@@ -119,7 +141,7 @@
     const migration=ready&&oldLocalPlans.length
       ? `<button type="button" class="setting-row" data-action="import-local"><span class="setting-icon">${ico('share')}</span><span class="setting-copy"><strong>Import ${oldLocalPlans.length} local ${oldLocalPlans.length===1?'plan':'plans'}</strong><small>Copy your browser's personal plans to the synced calendar</small></span>${ico('right')}</button>`:'';
     return `<div class="us-page">${heading('A SPACE OF OUR OWN','Our little corner','A thoughtful home for shared plans, just the two of you.')}
-    <section class="together-card"><span class="eyebrow">A PLACE TOGETHER</span><h2>Better days,<br>planned together.</h2><p>The things we do, the places we go, and the moments we don’t want to miss.</p><div class="together-faces"><span class="big-face">Y</span><span class="big-face">P</span><span class="big-face face-add">${ico('heart')}</span></div></section>
+    <section class="together-card"><span class="eyebrow">A PLACE TOGETHER</span><h2>Better days,<br>planned together.</h2><p>The things we do, the places we go, and the moments we don’t want to miss.</p><div class="together-faces"><span class="big-face">S</span><span class="big-face">T</span><span class="big-face face-add">${ico('heart')}</span></div></section>
     <div class="us-section"><div class="section-label-row"><h2 class="section-title">Your Google account</h2><span class="mini-caption">${backendState.mode==='error'?'Connection failed':ready?(backendState.mode==='syncing'?'Syncing…':'Connected on this phone'):'Sign in to sync'}</span></div><div class="setting-card">${accountArea}</div></div>
     <div class="us-section"><h2 class="section-title">Our shared calendar</h2><div class="setting-card"><div class="setting-row"><span class="setting-icon">${ico('people')}</span><span class="setting-copy"><strong>One account, two phones</strong><small>Sign in with this same Google account on your fiancée’s Android phone. Events sync automatically when online.</small></span>${ico('check')}</div>${migration}</div></div>
     <div class="us-section"><div class="section-label-row"><h2 class="section-title">Your Hestia</h2></div><div class="setting-card">
@@ -130,7 +152,7 @@
     </div></div>
     <div class="explain-box"><strong>Hestia has its own Firebase project.</strong><p>Your plans are saved under <code>dashboards/{uid}</code> as an <code>events</code> array, following Chronos’s single-document-per-user structure, but completely independently. ${ready?'Your calendar is connected.':'Set up Hestia Firebase, then sign in on both Android phones with the same authorised Google account.'} Background Android alerts are not yet active.</p>${backendState.error?`<p class="sync-error">Firebase error: ${escapeHTML(backendState.error)}. Check the Hestia configuration, Google sign-in and Firestore rules.</p>`:''}</div></div>`;
   }
-  function render(){main.innerHTML=view==='today'?renderToday():view==='calendar'?renderCalendar():view==='plans'?renderPlans():renderUs();document.querySelectorAll('[data-view]').forEach(button=>{const active=button.dataset.view===view;button.classList.toggle('active',active);if(button.classList.contains('bottom-item')||button.classList.contains('nav-btn')){if(active)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');}});}
+  function render(){main.innerHTML=view==='today'?renderToday():view==='calendar'?renderCalendar():view==='plans'?renderPlans():renderUs();document.querySelectorAll('[data-view]').forEach(button=>{const active=button.dataset.view===view;button.classList.toggle('active',active);if(button.classList.contains('bottom-item')||button.classList.contains('nav-btn')){if(active)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');}});updateCloudStatus();}
   function navigate(to){view=to;if(to==='calendar')monthCursor=startMonth(fromISO(selectedDate));render();window.scrollTo({top:0,behavior:'instant'});}
   function openForm(id=null){if(cloudUser()&&!sharedSpace()){navigate('us');showToast('Sign in to your Google account first.');return;}editingId=id;const ev=id?events.find(x=>x.id===id):null;if(id&&!ev)return;eventForm.reset();currentCategory=ev?.category||'outing';document.getElementById('eventDialogTitle').textContent=ev?'Edit plan':'New plan';document.getElementById('saveEvent').innerHTML=(ev?'Save changes':'Save plan')+' '+ico('arrow');document.getElementById('fTitle').value=ev?.title||'';document.getElementById('fDate').value=ev?.date||selectedDate;document.getElementById('fTime').value=ev?.time||'10:00';document.getElementById('fDuration').value=String(ev?.duration??60);document.getElementById('fDeparture').value=ev?.departure||'';document.getElementById('fLocation').value=ev?.location||'';document.getElementById('fNotes').value=ev?.notes||'';document.querySelectorAll('.category-opt').forEach(b=>b.classList.toggle('chosen',b.dataset.cat===currentCategory));document.querySelectorAll('input[name="reminder"]').forEach(el=>el.checked=ev?ev.reminders?.includes(Number(el.value)):el.value==='30');if(detailDialog.open)detailDialog.close();eventDialog.showModal();setTimeout(()=>document.getElementById('fTitle').focus(),70);}
   function openDetail(id){const ev=events.find(x=>x.id===id);if(!ev)return;openedId=id;const label=categoryLabels[ev.category]||'Plan';const remText=(ev.reminders||[]).map(m=>m===1440?'1 day before':m===180?'3 hours before':`${m} minutes before`).join(', ');document.getElementById('detailBody').innerHTML=`<div class="sheet-handle" aria-hidden="true"></div><div class="sheet-head"><span class="eyebrow">${escapeHTML(label.toUpperCase())}${ev.sample?' · SAMPLE':''}</span><button type="button" class="icon-button" data-action="close-detail" aria-label="Close">${ico('close')}</button></div><div class="detail-body"><div class="detail-top-icon">${categoryEmoji[ev.category]||'✿'}</div><h2 class="detail-heading" id="detailTitle">${escapeHTML(ev.title)}</h2><span class="mini-caption">${ev.completed?'Completed':'On the calendar'}</span><div class="detail-meta"><div class="detail-line">${ico('calendar')}<span>${formatDay(ev.date)} · ${formatTime(ev.time)}${ev.duration?` · ${ev.duration} min`:''}</span></div>${ev.location?`<div class="detail-line">${ico('pin')}<span>${escapeHTML(ev.location)}</span></div>`:''}${ev.departure?`<div class="detail-line">${ico('clock')}<span>Leave home at <strong>${formatTime(ev.departure)}</strong></span></div>`:''}<div class="detail-line">${ico('bell')}<span>${remText?`Preference: ${escapeHTML(remText)}`:'No reminder preferences saved'}</span></div></div>${ev.notes?`<div class="detail-note">${escapeHTML(ev.notes)}</div>`:''}<div class="detail-footer-note">${pushConfigured()?'Reminder schedule is saved. Enable phone alerts under Our space on each device.':'Reminder times are saved, but push notification delivery needs server setup.'}</div><div class="detail-actions"><button class="button button-ghost" type="button" data-action="toggle-complete">${ico('check')} ${ev.completed?'Reopen plan':'Mark done'}</button><button class="button button-primary" type="button" data-action="edit-detail">${ico('pencil')} Edit plan</button><button class="button button-ghost" type="button" data-action="copy-event">${ico('share')} Copy details</button><button class="button button-danger" type="button" data-action="delete-detail">${ico('trash')} Delete</button></div></div>`;detailDialog.showModal();}

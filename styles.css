@@ -54,3 +54,5 @@ body.night .together-card .big-face:nth-child(2) { color:#422b24; }
 .invite-card{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px;border:1px solid var(--border);border-radius:15px;background:var(--surface);margin-top:12px;flex-wrap:wrap}.invite-card strong{font-size:13px}.invite-card p{font-size:11px;color:var(--muted);margin:4px 0}.invite-card .button{min-height:44px}
 .sync-error{color:#b94e36!important;overflow-wrap:anywhere}.setting-row:disabled{opacity:.75}.setting-row:disabled .mini-tag{white-space:normal}
 body.night .setup-form .field{color:var(--ink)}body.night .account-summary strong{color:var(--ink)}
+
+.member-pill{display:inline-flex;align-items:center}.avatar,.big-face{overflow:hidden}.avatar-photo{width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit}.avatar-has-photo{padding:0}.member-pill .avatar-has-photo + .avatar{margin-left:-10px}.together-faces .avatar-has-photo{padding:0}

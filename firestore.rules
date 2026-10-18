@@ -1,0 +1,17 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    function isAllowedEmail() {
+      // Same single approved email pattern as your Chronos rules.
+      return isAuthenticated() && request.auth.token.email in ['mistervaliant007@gmail.com'];
+    }
+    match /dashboards/{userId} {
+      allow read, create, update, delete: if isAuthenticated()
+        && userId == request.auth.uid
+        && isAllowedEmail();
+    }
+  }
+}
