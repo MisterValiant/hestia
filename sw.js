@@ -1,5 +1,5 @@
 /* Hestia PWA: app-shell caching + Firebase Cloud Messaging background push. */
-const CACHE='hestia-shell-v7';
+const CACHE='hestia-shell-v8';
 const ASSETS=['./','./index.html','./styles.css','./app.js','./backend.js','./firebase-settings.js','./manifest.webmanifest','./icons/hestia.svg','./icons/icon-192.png','./icons/icon-512.png'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(Promise.all([

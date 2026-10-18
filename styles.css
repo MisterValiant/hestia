@@ -56,3 +56,53 @@ body.night .together-card .big-face:nth-child(2) { color:#422b24; }
 body.night .setup-form .field{color:var(--ink)}body.night .account-summary strong{color:var(--ink)}
 
 .member-pill{display:inline-flex;align-items:center}.avatar,.big-face{overflow:hidden}.avatar-photo{width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit}.avatar-has-photo{padding:0}.member-pill .avatar-has-photo + .avatar{margin-left:-10px}.together-faces .avatar-has-photo{padding:0}
+/* Hestia 0.6 — shared spacing for every section, mobile-first feedback & controls */
+.calendar-page,.plans-page,.us-page{max-width:none;width:100%;min-width:0}
+.page-head>div:first-child{min-width:0}
+.calendar-header-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:7px}
+.calendar-new-button{appearance:none;border:1px solid transparent;border-radius:12px;padding:10px 15px;min-height:42px;display:inline-flex;align-items:center;justify-content:center;gap:7px;background:var(--forest);color:#fff;font-size:12px;font-weight:700;box-shadow:0 6px 17px rgba(47,93,63,.18)}
+.calendar-new-button .ico{width:16px;height:16px;stroke-width:2.2}
+.calendar-new-button:hover{filter:brightness(1.07)}
+.calendar-new-button:focus-visible,.member-pill:focus-visible,.google-sign-in:focus-visible{outline:3px solid var(--terra);outline-offset:3px}
+.month-cell:focus-visible{outline:2px solid var(--terra);outline-offset:0}
+.day-dialog{max-width:550px}
+.day-dialog-content{padding:0 22px 25px;max-height:65dvh;overflow:auto}
+.day-dialog .sheet-head h2{font-size:clamp(23px,4.5vw,30px)}
+.day-dialog-summary{margin:0 0 16px;font-size:12px;font-weight:650;color:var(--muted)}
+.day-add{width:100%;margin-top:17px}
+/* Noticeable yet quiet non-blocking top network/sync progress */
+.top-progress{position:fixed;top:0;left:0;right:0;height:4px;z-index:120;pointer-events:none;opacity:0;overflow:hidden;transition:opacity .15s}
+.top-progress.active{opacity:1}
+.top-progress span{position:absolute;top:0;left:0;height:100%;width:40%;border-radius:99px;background:linear-gradient(90deg,#d99975,#f1c483,#84ad83,#78a4ba,#bc9dc9);background-size:170% 100%;animation:hestia-loading 1.4s ease-in-out infinite alternate,hestia-shimmer 1.8s linear infinite}
+@keyframes hestia-loading{from{transform:translateX(-105%)}to{transform:translateX(255%)}}
+@keyframes hestia-shimmer{to{background-position:170% 0}}
+.button-spinner{width:16px;height:16px;display:inline-block;flex:none;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:hestia-spin .65s linear infinite}
+@keyframes hestia-spin{to{transform:rotate(360deg)}}
+.button.is-saving{cursor:progress;opacity:.88}
+/* Validation that reads clearly on both light and evening palettes */
+.form-alert{padding:11px 14px;background:#fff0e8;border:1px solid #e8b19a;color:#953f2f;font-size:12px;font-weight:700;line-height:1.5;border-radius:12px}
+.form-alert[hidden]{display:none}
+.field-error{color:#ae4939;font-size:11px;font-weight:700;line-height:1.4;margin-top:0}
+.field input[aria-invalid="true"],.field select[aria-invalid="true"]{border-color:#c35d49!important;background:#fff6f1!important;box-shadow:0 0 0 2px rgba(195,93,73,.12)!important;color:#512f27!important}
+/* Logged-out S/T, logged-in one signed-in profile only */
+.member-pill.is-signed-in .avatar-two{display:none}
+.member-pill.is-signed-in .avatar-one{width:37px;height:37px}
+.member-pill .avatar{transition:transform .18s,border-color .18s}
+.member-pill:hover .avatar:first-child{transform:translateY(-1px);border-color:var(--terra)}
+/* Google sign in indicator: rainbow border, clear focus and still fully tap-friendly */
+.google-sign-in{position:relative;isolation:isolate;margin:7px;max-width:calc(100% - 14px);width:calc(100% - 14px);border-radius:16px;min-height:79px;overflow:hidden;background:transparent}
+.google-sign-in::before{content:"";position:absolute;z-index:-2;inset:-75%;background:conic-gradient(#4285f4,#34a853,#fbbc05,#ea4335,#4285f4);animation:hestia-google-border 5s linear infinite}
+.google-sign-in::after{content:"";position:absolute;inset:2px;z-index:-1;background:var(--surface);border-radius:14px}
+.google-sign-in:hover::after{background:var(--paper-2)}
+.google-sign-in .setting-copy strong{font-size:13px}
+.google-sign-in .google-mark{background:#fff;border:1px solid #ece8df;box-shadow:0 2px 8px rgba(34,73,48,.12);border-radius:12px}
+@keyframes hestia-google-border{to{transform:rotate(360deg)}}
+body.night .calendar-new-button{background:#bcd5bd;color:#233c2d;box-shadow:0 6px 17px rgba(0,0,0,.14)}
+body.night .form-alert{background:#49362f;color:#ffd5c4;border-color:#a96d56}
+body.night .field-error{color:#ffbaa1}
+body.night .field input[aria-invalid="true"],body.night .field select[aria-invalid="true"]{background:#49362f!important;color:#ffefe7!important;border-color:#d9957e!important}
+body.night .google-sign-in::after{background:var(--surface)}
+body.night .google-sign-in:hover::after{background:var(--paper-2)}
+@media(max-width:420px){.calendar-page .page-head{flex-wrap:wrap}.calendar-header-actions{width:100%;justify-content:flex-start}.calendar-page .page-head{margin-bottom:19px}}
+@media(min-width:690px){.day-dialog-content{max-height:64vh}}
+@media(prefers-reduced-motion:reduce){.top-progress span,.button-spinner,.google-sign-in::before{animation:none!important}.top-progress span{width:100%}.member-pill .avatar{transition:none}}

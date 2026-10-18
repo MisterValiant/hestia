@@ -46,6 +46,7 @@
     <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M5 14v6h14v-6"/></symbol>
   </svg>
 
+  <div class="top-progress" id="topProgress" role="status" aria-label="Hestia is loading" aria-hidden="true"><span></span></div>
   <div class="app-shell" id="appShell">
     <aside class="side-panel" aria-label="Desktop navigation">
       <a class="brand brand-side" href="./" aria-label="Hestia Home"><span class="brand-symbol" aria-hidden="true"><span class="flame"></span></span><span>hestia<span class="brand-dot">.</span></span></a>
@@ -82,20 +83,22 @@
       <div class="sheet-handle" aria-hidden="true"></div>
       <div class="sheet-head"><div><span class="eyebrow">A MOMENT TO REMEMBER</span><h2 id="eventDialogTitle">New plan</h2></div><button type="button" class="icon-button" data-action="close-form" aria-label="Close"><svg class="ico"><use href="#i-close"/></svg></button></div>
       <div class="form-body">
+        <div class="form-alert" id="formAlert" role="alert" hidden></div>
         <label class="field"><span>What's the plan?</span><input name="title" id="fTitle" required maxlength="90" placeholder="e.g. Lunch with the family" autocomplete="off"></label>
         <div class="field"><span>Category</span><div class="category-picker" id="categoryPicker" role="group" aria-label="Event category">
-          <button type="button" class="category-opt chosen" data-cat="outing">✿ <span>Outing</span></button><button type="button" class="category-opt" data-cat="appointment">◷ <span>Appointment</span></button><button type="button" class="category-opt" data-cat="errand">◈ <span>Errand</span></button><button type="button" class="category-opt" data-cat="home">⌂ <span>Home</span></button>
+          <button type="button" class="category-opt chosen" data-cat="errand">◈ <span>Errand</span></button><button type="button" class="category-opt" data-cat="outing">✿ <span>Outing</span></button><button type="button" class="category-opt" data-cat="appointment">◷ <span>Appointment</span></button><button type="button" class="category-opt" data-cat="home">⌂ <span>Home</span></button>
         </div></div>
         <div class="form-grid"><label class="field"><span>Date</span><input name="date" id="fDate" type="date" required></label><label class="field"><span>Time</span><input name="time" id="fTime" type="time" required></label></div>
         <div class="form-grid"><label class="field"><span>Duration</span><select id="fDuration" name="duration"><option value="30">30 minutes</option><option value="60" selected>1 hour</option><option value="90">1 hr 30 min</option><option value="120">2 hours</option><option value="180">3 hours</option><option value="240">4 hours</option><option value="0">All day / no duration</option></select></label><label class="field"><span>Leave home at <small>(optional)</small></span><input type="time" name="departure" id="fDeparture"></label></div>
         <label class="field"><span>Where?</span><input name="location" id="fLocation" maxlength="120" placeholder="Add a place (optional)"></label>
         <label class="field"><span>A little note <small>(optional)</small></span><textarea name="notes" id="fNotes" rows="2" maxlength="600" placeholder="Anything you don't want to forget..."></textarea></label>
-        <fieldset class="reminders"><legend><svg class="ico"><use href="#i-bell"/></svg> Reminder preferences</legend><div class="reminder-choices"><label><input type="checkbox" name="reminder" value="1440"><span>1 day before</span></label><label><input type="checkbox" name="reminder" value="180"><span>3 hours</span></label><label><input type="checkbox" name="reminder" value="30" checked><span>30 minutes</span></label></div><p>These preferences sync between phones. <strong>Background Android alerts are not active in this frontend-only version.</strong></p></fieldset>
+        <fieldset class="reminders"><legend><svg class="ico"><use href="#i-bell"/></svg> Reminder preferences</legend><div class="reminder-choices"><label><input type="checkbox" name="reminder" value="1440"><span>1 day before</span></label><label><input type="checkbox" name="reminder" value="180"><span>3 hours</span></label><label><input type="checkbox" name="reminder" value="60"><span>1 hour</span></label><label><input type="checkbox" name="reminder" value="30" checked><span>30 minutes</span></label></div><p>These preferences sync between phones. <strong>Background Android alerts are not active in this frontend-only version.</strong></p></fieldset>
       </div>
       <div class="form-actions"><button type="button" class="button button-ghost" data-action="close-form">Cancel</button><button type="submit" class="button button-primary" id="saveEvent">Save plan <svg class="ico"><use href="#i-arrow"/></svg></button></div>
     </form>
   </dialog>
 
+  <dialog class="sheet-dialog day-dialog" id="dayDialog" aria-labelledby="dayDialogTitle"><div id="dayDialogBody"></div></dialog>
   <dialog class="sheet-dialog detail-dialog" id="detailDialog" aria-labelledby="detailTitle"><div id="detailBody"></div></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <!-- Firebase compat SDK (same implementation style as Chronos; separate Firebase project). -->

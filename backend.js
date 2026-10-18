@@ -80,7 +80,7 @@
       category:['outing','appointment','errand','home'].includes(e.category)?e.category:'outing',
       departure:e.departure||'',location:String(e.location||'').slice(0,120),
       notes:String(e.notes||'').slice(0,600),
-      reminders:(Array.isArray(e.reminders)?e.reminders:[]).filter(n=>[30,180,1440].includes(Number(n))).map(Number),
+      reminders:(Array.isArray(e.reminders)?e.reminders:[]).filter(n=>[30,60,180,1440].includes(Number(n))).map(Number),
       completed:!!e.completed,createdAt:old?.createdAt||new Date().toISOString(),
       updatedAt:new Date().toISOString()
     };
