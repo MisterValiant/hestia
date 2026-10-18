@@ -1,17 +1,13 @@
-/* HESTIA FIREBASE CONFIG — use the NEW Firebase project created for Hestia.
-   Replace each REPLACE_* value below with values from:
-   Firebase Console > Project settings > Your apps > Web app > SDK setup and configuration.
-   This is public Firebase web configuration, NOT a service-account private key.
-   Never paste any private keys here.
-   WARNING: Do NOT reuse Chronos's dashboard-countdown configuration. */
+/* Hestia Firebase Web App configuration — separate from Chronos. */
 window.HESTIA_CONFIG = Object.freeze({
   firebase: {
-    apiKey: 'REPLACE_API_KEY',
-    authDomain: 'REPLACE_PROJECT_ID.firebaseapp.com',
-    projectId: 'REPLACE_PROJECT_ID',
-    storageBucket: 'REPLACE_PROJECT_ID.firebasestorage.app',
-    messagingSenderId: 'REPLACE_SENDER_ID',
-    appId: 'REPLACE_APP_ID'
+    apiKey: 'AIzaSyCEkUqceQ6QevIcTCwKTzkPlGkyLhvuuKY',
+    authDomain: 'hestia-valiant.firebaseapp.com',
+    projectId: 'hestia-valiant',
+    storageBucket: 'hestia-valiant.firebasestorage.app',
+    messagingSenderId: '962477278228',
+    appId: '1:962477278228:web:7889aac3e17b1777e01301',
+    measurementId: 'G-RX9EGYWELZ'
   },
   notificationsDeployed: false
 });
